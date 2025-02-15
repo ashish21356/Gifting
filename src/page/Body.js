@@ -1,4 +1,4 @@
-import RestraCard, {PramotedRestraCard} from "./RestraCard";
+import RestraCard, {PramotedRestraCard} from "../component/RestraCard";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../../utils/useOnlineStatus"
@@ -91,10 +91,15 @@ const Carousel = () => {
 };
 {/**corsol end */}
   const fetchData = async () => {
-    const response = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/search/v3?lat=22.057437&lng=78.9381729&str=biryani&trackingId=6c453a9d-a5c2-234a-704c-603faeeb3f1d&submitAction=ENTER&queryUniqueId=c21431bf-6b78-8a2d-e416-64f7611c2c19"
-    );
-    const finalData = await response.json();
+    let finalData;
+    try {
+      const response = await fetch(
+        "https://www.swiggy.com/dapi/restaurants/search/v3?lat=22.057437&lng=78.9381729&str=biryani&trackingId=6c453a9d-a5c2-234a-704c-603faeeb3f1d&submitAction=ENTER&queryUniqueId=c21431bf-6b78-8a2d-e416-64f7611c2c19"
+      );
+      finalData = await response.json();
+    } catch (error) {
+      
+    }
     // const DataArray =
     //   finalData?.data.cards[1].groupedCard.cardGroupMap.DISH.cards.filter(
     //     (carddata) => {
@@ -102,7 +107,7 @@ const Carousel = () => {
     //     }
     //   );
     const filterDataArray =
-      finalData?.data.cards[1].groupedCard.cardGroupMap.DISH.cards.filter(
+    finalData ? finalData?.data.cards[1].groupedCard.cardGroupMap.DISH.cards.filter(
         (carddata, index, self) =>
           carddata?.card?.card?.restaurant &&
           index ===
@@ -111,7 +116,7 @@ const Carousel = () => {
                 uniquedata.card?.card?.restaurant?.info?.id ===
                 carddata?.card?.card?.restaurant?.info?.id
             )
-      );
+      ) : [];
     setOriginalList(filterDataArray);
     setRestrauntList(filterDataArray);
   };

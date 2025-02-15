@@ -1,5 +1,5 @@
 
-import AboutUsClass from "./AboutUsClass";
+import AboutUsClass from "../component/AboutUsClass";
 const AboutUs = () => {
     console.log("About Us page loaded...");
     return (

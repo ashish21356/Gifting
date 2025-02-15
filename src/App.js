@@ -3,12 +3,12 @@ import ReactDOM from "react-dom/client";
 import { lazy, Suspense } from "react";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
-import Body from "./component/Body";
+import Body from "./page/Body";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import AboutUs from "./component/AboutUs";
+import AboutUs from "./page/AboutUs";
 import Error from "./component/Error";
-import Contact from "./component/Contact";
-import RestaurantsMenu from "./component/RestaurantsMenu";
+import Contact from "./page/Contact";
+import RestaurantsMenu from "./page/RestaurantsMenu";
 //import Grocery from "./component/Grocery"
 
 
